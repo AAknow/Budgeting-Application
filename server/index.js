@@ -2,12 +2,17 @@
 const express = require('express');
 const app = express();
 
-// Listening on port 8080
-app.listen(8080, () => {
-      console.log('server listening on port 8080')
+// Port setup
+const PORT = 8080;
+
+app.listen(PORT, (error) => {
+    if (error) {
+        throw error;
+    }
+    console.log(`server listening on port ${PORT}`);
 })
 
 // Routes
 app.get('/', (req, res) => {
-      res.send('Hello from our server!')
+      res.send('Hello from the Budgeting Application server!')
 })
