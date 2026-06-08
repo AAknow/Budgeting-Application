@@ -1,4 +1,4 @@
-// Express.js
+// index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Sequelize, Model, DataTypes } = require('sequelize');
@@ -11,7 +11,7 @@ const sequelize = new Sequelize({
     storage: './database.sqlite'
 });
 
-// Define User model
+// User model
 class User extends Model {}
 User.init({
     name: DataTypes.STRING,
@@ -19,7 +19,7 @@ User.init({
     password: DataTypes.STRING
 }, { sequelize, modelName: 'users' });
 
-// Define Expenses model
+// Expenses model
 class Expenses extends Model {}
 User.init({
     expense: DataTypes.STRING,
@@ -27,7 +27,7 @@ User.init({
     date: DataTypes.DATE
 }, { sequelize, modelName: 'expenses' });
 
-// Define Goals model
+// Goals model
 class Goals extends Model {}
 User.init({
     expense: DataTypes.STRING,
