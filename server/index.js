@@ -21,7 +21,7 @@ User.init({
 
 // Expenses model
 class Expenses extends Model {}
-User.init({
+Expenses.init({
     expense: DataTypes.STRING,
     amount: DataTypes.FLOAT,
     date: DataTypes.DATE
@@ -29,8 +29,8 @@ User.init({
 
 // Goals model
 class Goals extends Model {}
-User.init({
-    expense: DataTypes.STRING,
+Goals.init({
+    goal: DataTypes.STRING,
     amount: DataTypes.FLOAT,
     date: DataTypes.DATE
 }, { sequelize, modelName: 'goals' });
@@ -60,3 +60,35 @@ app.listen(PORT, (error) => {
     }
     console.log(`server listening on port ${PORT}`);
 })
+
+
+//-----------------------------------------
+
+// Testing Database Connection
+async function checkDatabase() {
+    //try {
+    //    await sequelize.authenticate();
+    //    console.log('Connection has been established successfully.');
+    //} catch (error) {
+    //    console.error('Unable to connect to the database:', error);
+    //}
+
+    // check all users
+    const users = await User.findAll();
+    console.log(users.every(user => user instanceof User)); // true
+    console.log('All users:', JSON.stringify(users, null, 2));
+
+    // check all expenses
+    const expenses = await Expenses.findAll();
+    console.log(expenses.every(expense => expense instanceof Expenses)); // true
+    console.log('All expenses:', JSON.stringify(expenses, null, 2));
+
+    // check all goals
+    const goals = await Goals.findAll();
+    console.log(goals.every(goal => goal instanceof Goals)); // true
+    console.log('All goals:', JSON.stringify(goals, null, 2));
+}
+
+checkDatabase();
+
+//-----------------------------------------
