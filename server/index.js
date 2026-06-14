@@ -7,14 +7,6 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 // Port Listener
 const PORT = 8080;
 
-//app.listen(PORT, (error) => {
-//    if (error) {
-//        throw error;
-//    }
-//    console.log(`server listening on port ${PORT}`);
-//})
-
-
 //=================================================
 //==================//
 //  Database Setup  //
@@ -108,6 +100,9 @@ app.use("/finance", financeRouter);
 app.use("/", indexRouter); 
 
 //=================================================
+//==================//
+// Database Testing //
+//==================//
 
 // Testing Database Connection
 async function checkDatabase() {
@@ -144,9 +139,10 @@ async function checkDatabase() {
     console.log(columnNames); 
 }
 
-//checkDatabase();
-
 //=================================================
+//==================//
+//     Startup      //
+//==================//
 
 // Temporarily updates tables (needs to disable similar lines in main logic)
 async function start() {
