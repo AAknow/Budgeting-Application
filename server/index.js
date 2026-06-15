@@ -90,13 +90,14 @@ app.use(bodyParser.json());
 //      Routes      //
 //==================//
 
-// Routes
-const userRouter = require("./routes/userRouter"); 
-const financeRouter = require("./routes/financeRouter"); 
+const expenseRouter = require("./routes/expenseRouter");
+const goalRouter = require("./routes/goalRouter");  
 const indexRouter = require("./routes/indexRouter");
+const userRouter = require("./routes/userRouter");
 
 app.use("/user", userRouter); 
-app.use("/finance", financeRouter); 
+app.use("/expense", expenseRouter); 
+app.use("/goal", goalRouter);
 app.use("/", indexRouter); 
 
 //=================================================
@@ -104,7 +105,6 @@ app.use("/", indexRouter);
 // Database Testing //
 //==================//
 
-// Testing Database Connection
 async function checkDatabase() {
     //try {
     //    await sequelize.authenticate();
