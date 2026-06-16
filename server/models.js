@@ -32,7 +32,7 @@ Expenses.init({
     userId: {
         type: DataTypes.UUID,
         references: {
-            model: 'User',
+            model: User,
             key: 'id',
         }
     },
@@ -53,7 +53,7 @@ Goals.init({
     userId: {
         type: DataTypes.UUID,
         references: {
-            model: 'User',
+            model: User,
             key: 'id',
         }
     },
