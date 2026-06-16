@@ -2,84 +2,10 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { sequelize, User, Expenses, Goals } = require("./models");
 
 // Port Listener
 const PORT = 8080;
-
-//=================================================
-//==================//
-//  Database Setup  //
-//==================//
-
-// Create Sequelize instance
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './database.sqlite'
-});
-
-// User model
-class User extends Model {}
-User.init({
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
-        allowNull: false
-    },
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
-}, { sequelize, modelName: 'users' });
-
-// Expenses model
-class Expenses extends Model {}
-Expenses.init({
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
-        allowNull: false
-    },
-    userId: {
-        type: DataTypes.UUID,
-        references: {
-            model: 'User',
-            key: 'id',
-        }
-    },
-    expense: DataTypes.STRING,
-    amount: DataTypes.FLOAT,
-    date: DataTypes.DATE
-}, { sequelize, modelName: 'expenses' });
-
-// Goals model
-class Goals extends Model {}
-Goals.init({
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
-        allowNull: false
-    },
-    userId: {
-        type: DataTypes.UUID,
-        references: {
-            model: 'User',
-            key: 'id',
-        }
-    },
-    goal: DataTypes.STRING,
-    amount: DataTypes.FLOAT,
-    date: DataTypes.DATE
-}, { sequelize, modelName: 'goals' });
-
-// Sync models with database (is currently being applied in the start function)
-//sequelize.sync();
-
-// Create database relationships
-User.hasMany(Expenses);
-User.hasMany(Goals);
 
 // Middleware for parsing request body
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -113,9 +39,16 @@ async function checkDatabase() {
     //    console.error('Unable to connect to the database:', error);
     //}
 
+    // create test user
+    const testUser = await User.create({
+        id: 1,
+        name: "Test User",
+        email: "test@example.com",
+        password: "password123"
+    });
+
     // check all users
     const users = await User.findAll();
-    const user = await User.findByPk(0);
     console.log(users.every(user => user instanceof User)); // true
     console.log('All users:', JSON.stringify(users, null, 2));
     // check all column names in User table
@@ -147,14 +80,18 @@ async function checkDatabase() {
 // Temporarily updates tables (needs to disable similar lines in main logic)
 async function start() {
    try {
-	 // update tables
+        // sync tables (use when done testing)
+        //await sequelize.sync();
+
+	    // update tables on restart
         await sequelize.sync({ force: true });
+
         console.log("Database synced");
 	 
-	 // run temp database test function
+	    // run temp database test function
         await checkDatabase();
 
-	// display if server is up on specified port
+	    // display if server is up on specified port
         app.listen(PORT, () => {
             console.log(`server listening on port ${PORT}`);
         });
