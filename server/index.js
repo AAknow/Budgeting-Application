@@ -53,7 +53,16 @@ async function checkDatabase() {
     console.log('All users:', JSON.stringify(users, null, 2));
     // check all column names in User table
     let columnNames = Object.keys(User.getAttributes());
-    console.log(columnNames); 
+    console.log(columnNames);
+    
+    // create test expense
+    const testExpense = await Expenses.create({
+        id: 1,
+        userId: 1,
+        expense: "Test Expense",
+        amount: 300.00,
+        date: new Date("2026-06-15")
+    });
 
     // check all expenses
     const expenses = await Expenses.findAll();
