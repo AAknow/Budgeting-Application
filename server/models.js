@@ -41,6 +41,27 @@ Expenses.init({
     date: DataTypes.DATE
 }, { sequelize, modelName: 'expenses' });
 
+// Incomes model
+class Incomes extends Model {}
+Incomes.init({
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUID.V4,
+        allowNull: false
+    },
+    userId: {
+        type: DataTypes.UUID,
+        references: {
+            model: User,
+            key: 'id',
+        }
+    },
+    income: DataTypes.STRING,
+    amount: DataTypes.FLOAT,
+    date: DataTypes.DATE
+}, { sequelize, modelName: 'incomes' });
+
 // Goals model
 class Goals extends Model {}
 Goals.init({
@@ -65,11 +86,13 @@ Goals.init({
 // Create database relationships
 User.hasMany(Expenses);
 User.hasMany(Goals);
+User.hasMany(Incomes);
 
 // Export everything
 module.exports = {
     sequelize,
     User,
     Expenses,
+    Incomes,
     Goals
 };
