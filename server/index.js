@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const { sequelize, User, Expenses, Goals } = require("./models");
+const { sequelize, User, Expenses, Incomes, Goals } = require("./models");
 
 // Port Listener
 const PORT = 8080;
@@ -17,12 +17,14 @@ app.use(bodyParser.json());
 //==================//
 
 const expenseRouter = require("./routes/expenseRouter");
+const incomeRouter = require("./routes/incomeRouter");
 const goalRouter = require("./routes/goalRouter");  
 const indexRouter = require("./routes/indexRouter");
 const userRouter = require("./routes/userRouter");
 
 app.use("/user", userRouter); 
-app.use("/expense", expenseRouter); 
+app.use("/expense", expenseRouter);
+app.use("/income", incomeRouter);  
 app.use("/goal", goalRouter);
 app.use("/", indexRouter); 
 
@@ -72,6 +74,7 @@ async function checkDatabase() {
     columnNames = Object.keys(Expenses.getAttributes());
     console.log(columnNames); 
 
+    // create test goal
     const testGoal = await Goals.create({
         id: 1,
         userId: 1,
@@ -86,6 +89,23 @@ async function checkDatabase() {
     console.log('All goals:', JSON.stringify(goals, null, 2));
     // check all column names in Goals table
     columnNames = Object.keys(Goals.getAttributes());
+    console.log(columnNames); 
+
+    // create test income
+    const testIncome = await Incomes.create({
+        id: 1,
+        userId: 1,
+        income: "Test Income",
+        amount: 300.00,
+        date: new Date("2026-06-17")
+    });
+
+    // check all incomes
+    const incomes = await Incomes.findAll();
+    console.log(incomes.every(income => income instanceof Incomes)); // true
+    console.log('All Incomes:', JSON.stringify(incomes, null, 2));
+    // check all column names in Goals table
+    columnNames = Object.keys(Incomes.getAttributes());
     console.log(columnNames); 
 }
 
