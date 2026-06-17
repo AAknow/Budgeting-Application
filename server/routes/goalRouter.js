@@ -1,11 +1,10 @@
 const { Router } = require("express"); 
+const { getGoalById } = require('../controllers/goalController');
+
 const goalRouter = Router();
- 
+
 goalRouter.get("/", (req, res) => res.send("All Goals")); 
 
-goalRouter.get("/:goalId", (req, res) => { 
-    const { goalId } = req.params; 
-    res.send(`Goal ID: ${goalId}`); 
-}); 
+goalRouter.get("/:goalId", getGoalById);
 
 module.exports = goalRouter;
