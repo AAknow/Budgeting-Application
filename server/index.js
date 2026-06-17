@@ -60,7 +60,7 @@ async function checkDatabase() {
         id: 1,
         userId: 1,
         expense: "Test Expense",
-        amount: 300.00,
+        amount: 25.00,
         date: new Date("2026-06-15")
     });
 
@@ -71,6 +71,14 @@ async function checkDatabase() {
     // check all column names in Expenses table
     columnNames = Object.keys(Expenses.getAttributes());
     console.log(columnNames); 
+
+    const testGoal = await Goals.create({
+        id: 1,
+        userId: 1,
+        goal: "Test Goal",
+        amount: 300.00,
+        date: new Date("2026-06-20")
+    });
 
     // check all goals
     const goals = await Goals.findAll();
