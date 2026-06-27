@@ -39,36 +39,36 @@ function Login() {
     };
 
     return (
-        <div>
-            
-            <h1>Budgeting Application</h1>
+        <div className="App">
+            <div className="form-container">
+                <h1>Budgeting Application</h1>
 
-            {error && (
-                <p style={{ color: "red "}}>
-                    {error}
-                </p>
-            )}
+                {error && (
+                    <p style={{ color: "red "}}>
+                        {error}
+                    </p>
+                )}
 
-            <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+                <input
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-            <button onClick={signIn}>Sign In</button>
+                <button onClick={signIn}>Sign In</button>
 
-            <button onClick={() => navigate("/signup")}>
-                Create New Account
-            </button>
-
+                <button onClick={() => navigate("/signup")}>
+                    Create New Account
+                </button>
+            </div>
         </div>
     );
 }
