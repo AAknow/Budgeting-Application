@@ -12,7 +12,7 @@ User.init({
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false
     },
     name: DataTypes.STRING,
@@ -26,7 +26,7 @@ Expenses.init({
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false
     },
     userId: {
@@ -47,7 +47,7 @@ Incomes.init({
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false
     },
     userId: {
@@ -68,7 +68,7 @@ Goals.init({
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUID.V4,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false
     },
     userId: {
