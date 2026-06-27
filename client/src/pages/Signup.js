@@ -49,51 +49,51 @@ function Signup() {
     };
 
     return (
-        <div>
-            
-            <h1>Create Account</h1>
+        <div className="App">
+            <div className="form-container">
+                <h1>Create Account</h1>
 
-            {error && (
-                <p style={{ color: "red "}}>
-                    {error}
-                </p>
-            )}
+                {error && (
+                    <p style={{ color: "red "}}>
+                        {error}
+                    </p>
+                )}
 
-            {success && (
-                <p style={{ color: "green "}}>
-                    {success}
-                </p>
-            )}
+                {success && (
+                    <p style={{ color: "green "}}>
+                        {success}
+                    </p>
+                )}
 
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
 
-            <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+                <input
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-            <button onClick={signUp}>
-                Sign Up
-            </button>
+                <button onClick={signUp}>
+                    Sign Up
+                </button>
 
-            <button onClick={() => navigate("/")}>
-                Return to Login
-            </button>
-
+                <button onClick={() => navigate("/")}>
+                    Return to Login
+                </button>
+            </div>
         </div>
     );
 }
