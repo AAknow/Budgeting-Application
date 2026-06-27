@@ -1,38 +1,85 @@
+/* Global page styling */
+body {
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+background: #f4f6f8;
+}
+
+/* Main wrapper used in Login/Signup */
 .App {
-  text-align: center;
+display: flex;
+justify-content: center; /* center horizontally */
+align-items: center; /* center vertically */
+height: 100vh; /* full screen height */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* The form container box */
+.form-container {
+background: white;
+padding: 30px 40px;
+border-radius: 12px;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+width: 320px;
+
+display: flex;
+flex-direction: column; /* stack items vertically */
+gap: 12px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Title styling */
+.form-container h1 {
+text-align: center;
+margin-bottom: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Input fields */
+.form-container input {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-size: 14px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Button styling */
+.form-container button {
+padding: 10px;
+border: none;
+border-radius: 6px;
+background-color: #007bff;
+color: white;
+font-size: 15px;
+cursor: pointer;
+transition: background 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-container button:hover {
+background-color: #0056b3;
 }
+
+/* Error message */
+.error {
+color: red;
+font-size: 13px;
+text-align: center;
+}
+
+/* Success message */
+.success {
+color: green;
+font-size: 13px;
+text-align: center;
+}
+
+/* Links (Login <-> Signup) */
+.form-container a {
+text-align: center;
+font-size: 13px;
+color: #007bff;
+text-decoration: none;
+}
+
+.form-container a:hover {
+text-decoration: underline;
+}
+
+
