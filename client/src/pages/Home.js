@@ -8,18 +8,45 @@ function Home() {
     };
 
     return (
-        <div className="App">
+        <div className="home-page">
 
-            <h1>Budgeting Application</h1>
-            
-            <h2>Home Page</h2>
+            {/* Header */}
+            <header className="home-header">
+                <h1>Budget Dashboard</h1>
+                <button onClick={logout}>Logout</button>
+            </header>
 
-            <p>Congratulations! Your routing is working.</p>
+            {/* Summary Cards */}
+            <section className="summary-grid">
 
-            <button onClick={logout}>Logout</button>
+                <div className="card income">
+                    <h3>Income</h3>
+                    <p>$0</p>
+                </div>
+
+                <div className="card expenses">
+                    <h3>Expenses</h3>
+                    <p>$0</p>
+                </div>
+
+                <div className="card balance">
+                    <h3>Balance</h3>
+                    <p>$0</p>
+                </div>
+
+            </section>
+
+            {/* Charts Section */}
+            <section className="charts-section">
+                <h2>Spending Overview</h2>
+
+                <div className="chart-box">
+                    <p>Chart will go here (Chart.js)</p>
+                </div>
+            </section>
 
         </div>
-    );
+);
 }
 
-export default Home;
+export default Home; 
