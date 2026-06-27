@@ -25,12 +25,14 @@ const incomeRouter = require("./routes/incomeRouter");
 const goalRouter = require("./routes/goalRouter");  
 const indexRouter = require("./routes/indexRouter");
 const userRouter = require("./routes/userRouter");
+const authRouter = require("./routes/authRouter");
 
 app.use("/user", userRouter); 
 app.use("/expense", expenseRouter);
 app.use("/income", incomeRouter);  
 app.use("/goal", goalRouter);
-app.use("/", indexRouter); 
+app.use("/auth", authRouter);
+app.use("/", indexRouter);
 
 //=================================================
 //==================//
