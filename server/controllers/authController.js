@@ -55,7 +55,7 @@ async function login(req, res) {
 
 //=================================================
 //==================//
-//      Login       //
+//      Sign Up     //
 //==================//
 
 async function signup(req, res) {
@@ -90,9 +90,9 @@ async function signup(req, res) {
         return res.status(201).json({
             message: "Account Created Succesfully!",
             user: {
-                id: user.id,
-                name: user.name,
-                email: user.email
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email
             }
         });
     }
