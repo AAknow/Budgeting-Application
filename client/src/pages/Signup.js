@@ -9,11 +9,13 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     const signUp = async () => {
         try {
 
             setError("");
+            setSuccess("");
 
             const response = await api.post(
                 "/auth/signup",
@@ -23,6 +25,13 @@ function Signup() {
                     password
                 }
             );
+
+            setSuccess(response.data.message);
+
+            // Clear form data
+            setName("");
+            setEmail("");
+            setPassword("");
 
             console.log(response.data);
 
@@ -50,6 +59,12 @@ function Signup() {
                 </p>
             )}
 
+            {success && (
+                <p style={{ color: "green "}}>
+                    {success}
+                </p>
+            )}
+
             <input
                 type="text"
                 placeholder="Name"
@@ -73,6 +88,10 @@ function Signup() {
 
             <button onClick={signUp}>
                 Sign Up
+            </button>
+
+            <button onClick={() => navigate("/")}>
+                Return to Login
             </button>
 
         </div>
