@@ -65,6 +65,10 @@ function Login() {
 
             <button onClick={signIn}>Sign In</button>
 
+            <button onClick={() => navigate("/signup")}>
+                Create New Account
+            </button>
+
         </div>
     );
 }
