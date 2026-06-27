@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const { sequelize, User, Expenses, Incomes, Goals } = require("./models");
+const cors = require('cors');
 
 // Port Listener
 const PORT = 8080;
@@ -10,6 +11,9 @@ const PORT = 8080;
 // Middleware for parsing request body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// use cors to avoid error messagin upon network requests
+app.use(cors());
 
 //=================================================
 //==================//
