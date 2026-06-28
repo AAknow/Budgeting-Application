@@ -14,6 +14,26 @@ async function getIncomeById(req, res) {
     res.send(`Income Name: ${income.income}`);
 }
 
+// Get all incomes for a user
+async function getIncomesByUser(req, res) {
+    try {
+        const { userId } = req.params;
+
+        const incomes = await Incomes.findAll({
+            where: { userId }
+        });
+
+        return res.status(200).json(incomes);
+    }
+    catch (err) {
+        console.log(err);
+
+        return res.status(500).json({
+            message: "Server error"
+        });
+    }
+}
+
 // Create income
 async function createIncome(req, res) {
     try {
@@ -48,4 +68,4 @@ async function createIncome(req, res) {
     }
 }
 
-module.exports = { getIncomeById, createIncome };
+module.exports = { getIncomeById, createIncome, getIncomesByUser };

@@ -14,6 +14,26 @@ async function getGoalById(req, res) {
     res.send(`Goal Name: ${goal.goal}`);
 }
 
+// Get all goals for a user
+async function getGoalsByUser(req, res) {
+    try {
+        const { userId } = req.params;
+
+        const goals = await Goals.findAll({
+            where: { userId }
+        });
+
+        return res.status(200).json(goals);
+    }
+    catch (err) {
+        console.log(err);
+
+        return res.status(500).json({
+            message: "Server error"
+        });
+    }
+}
+
 // Create goal
 async function createGoal(req, res) {
     try {
@@ -48,4 +68,4 @@ async function createGoal(req, res) {
     }
 }
 
-module.exports = { getGoalById, createGoal };
+module.exports = { getGoalById, createGoal, getGoalsByUser };

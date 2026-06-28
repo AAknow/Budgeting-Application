@@ -13,6 +13,26 @@ async function getExpenseById(req, res) {
     res.send(`Expense Name: ${expense.expense}`); 
 };
 
+// Get all expenses for a user
+async function getExpensesByUser(req, res) {
+    try {
+        const { userId } = req.params;
+
+        const expenses = await Expenses.findAll({
+            where: { userId }
+        });
+
+        return res.status(200).json(expenses);
+    }
+    catch (err) {
+        console.log(err);
+
+        return res.status(500).json({
+            message: "Server error"
+        });
+    }
+}
+
 // Create expense
 async function createExpense(req, res) {
     try {
@@ -47,4 +67,4 @@ async function createExpense(req, res) {
     }
 }
 
-module.exports = { getExpenseById, createExpense };
+module.exports = { getExpenseById, createExpense, getExpensesByUser };
