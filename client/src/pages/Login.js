@@ -22,7 +22,7 @@ function Login() {
                 }
             );
 
-            console.log(response.data);
+            localStorage.setItem("userId", response.data.user.id);
 
             navigate("/home");
         }
